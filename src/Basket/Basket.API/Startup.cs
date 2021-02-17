@@ -29,7 +29,6 @@ namespace Basket.API
         {
             services.AddControllers();
 
-            #region Redis Dependencies
 
             services.AddSingleton(sp =>
             {
@@ -37,26 +36,14 @@ namespace Basket.API
                 return ConnectionMultiplexer.Connect(configuration);
             });
 
-            #endregion
-
-            #region Project Dependencies
-
             services.AddTransient<IBasketContext, BasketContext>();
             services.AddTransient<IBasketRepository, BasketRepository>();
             services.AddAutoMapper(typeof(Startup));
-
-            #endregion
-
-            #region Swagger Dependencies
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Basket API", Version = "v1"});
             });
-
-            #endregion
-
-            #region RabbitMQ Dependencies
 
             services.AddSingleton<IRabbitMQConnection>(s =>
             {
@@ -72,8 +59,6 @@ namespace Basket.API
             });
 
             services.AddSingleton<EventBusRabbitMQProducer>();
-
-            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
