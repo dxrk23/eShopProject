@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Threading;
 using RabbitMQ.Client;
-using RabbitMQ.Client.Exceptions;
 
 namespace EventBusRabbitMQ
 {
